@@ -1,0 +1,62 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+
+model Student {
+  id         Int      @id @default(autoincrement())
+  name       String   @unique
+  // a student can enroll into many classes
+  classes             Class[]
+  // a student can have many mentors
+  mentors    Mentor[]
+  // a student can have many interestes
+  interestes Subject[]
+}
+
+model Mentor {
+  id Int @id @default(autoincrement())
+  name String
+  // a mentor can have many professions
+  professions Subject[]
+  // a mentor can teach in many classes
+  classes Class[]
+  // a mentor can have many students
+  students Student[]
+}
+
+model Class {
+  id        Int     @id @default(autoincrement())
+  title     String
+  // a class can have many students
+  students Student[]
+  // a class can can have many mentors
+  mentors  Mentor[]
+  // a class only have one subject
+  subject Subject @relation(fields: [subjectId], references: [id])
+  subjectId Int
+
+}
+
+model Subject {
+  id Int @id @default(autoincrement())
+  name SubjectName 
+  // a subject can be taught by many mentors
+  mentors Mentor[]
+  classes Class[]
+  students Student[]
+}
+
+enum SubjectName {
+  MATH
+  ART
+  HISTORY 
+}
