@@ -6,4 +6,4 @@
 - classes
 - subjects
 
-#### this project is mainly focused for showcasing my UI/UX and animations experience
+#### this project is mainly focused for showcasing my UI/UX and animations skills
