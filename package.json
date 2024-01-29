@@ -8,11 +8,16 @@
     "start": "next start",
     "lint": "next lint"
   },
+  "module": "",
+  "prisma": {
+    "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seeders/main.ts"
+  },
   "dependencies": {
     "@prisma/client": "^5.8.1",
     "next": "14.1.0",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "ts-node": "^10.9.2"
   },
   "devDependencies": {
     "@types/node": "^20",
