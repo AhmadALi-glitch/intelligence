@@ -4,8 +4,8 @@ import PrismaClient from "../connection";
 export default async function GET(request: NextApiRequest, response : NextApiResponse) {
 
     try {
-        const allStudents = await PrismaClient.student.findMany();
-        return response.json(allStudents);
+        const allLessons = await PrismaClient.lesson.findMany();
+        return response.json(allLessons);
     } catch(exc) {
         return response.json(exc);
     }

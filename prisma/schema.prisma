@@ -1,5 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
   provider = "prisma-client-js"
@@ -8,6 +6,14 @@ generator client {
 datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
+}
+
+model Account {
+  id              Int         @id @default(autoincrement())
+  email           String      @unique
+  type            AccountType
+  student         Student?
+  mentor          Mentor?
 }
 
 model Student {
@@ -56,14 +62,6 @@ model Lesson {
   subjectId       Int
   class           Class       @relation(fields: [classId], references: [id])
   classId         Int
-}
-
-model Account {
-  id              Int         @id @default(autoincrement())
-  email           String      @unique
-  type            AccountType
-  student         Student?
-  mentor          Mentor?
 }
 
 enum SubjectName {
