@@ -11,60 +11,65 @@ datasource db {
 }
 
 model Student {
-  id         Int      @id @default(autoincrement())
-  name       String   @unique
-  // a student can enroll into many classes
-  classes             Class[]
-  // a student can have many mentors
-  mentors    Mentor[]
-  // a student can have many interestes
-  interestes Subject[]
+  id              Int         @id @default(autoincrement())
+  name            String      @unique
+  classes         Class[]
+  mentors         Mentor[]
+  interestes      Subject[]
+  account         Account     @relation(fields: [accountEmail], references: [email])
+  accountEmail    String      @unique
 }
 
 model Mentor {
-  id Int @id @default(autoincrement())
-  name String
-  // a mentor can have many professions
-  professions Subject[]
-  // a mentor can teach in many classes
-  classes Class[]
-  // a mentor can have many students
-  students Student[]
+  id              Int         @id @default(autoincrement())
+  name            String
+  professions     Subject[]
+  classes         Class[]
+  students        Student[]
+  account         Account     @relation(fields: [accountEmail], references: [email])
+  accountEmail    String      @unique
 }
 
 model Class {
-  id        Int     @id @default(autoincrement())
-  title     String
-  // a class can have many students
-  students Student[]
-  // a class can can have many mentors
-  mentors  Mentor[]
-  // a class only have one subject
-  subject Subject @relation(fields: [subjectId], references: [id])
-  subjectId Int
-
+  id              Int         @id @default(autoincrement())
+  title           String
+  students        Student[]
+  mentors         Mentor[]
+  subject         Subject     @relation(fields: [subjectId], references: [id])
+  subjectId       Int
 }
 
 model Subject {
-  id Int @id @default(autoincrement())
-  name SubjectName 
-  // a subject can be taught by many mentors
-  mentors Mentor[]
-  classes Class[]
-  students Student[]
-
-  lessons Lesson[]
+  id              Int         @id @default(autoincrement())
+  name            SubjectName 
+  mentors         Mentor[]
+  classes         Class[]
+  students        Student[]
+  lessons         Lesson[]
 }
 
 model Lesson {
-  id Int @id @default(autoincrement())
-  title String
-  subject Subject @relation(fields: [subjectId], references: [id])
-  subjectId Int
+  id              Int         @id @default(autoincrement())
+  title           String
+  subject         Subject     @relation(fields: [subjectId], references: [id])
+  subjectId       Int
+}
+
+model Account {
+  id              Int         @id @default(autoincrement())
+  email           String      @unique
+  type            AccountType
+  student         Student?
+  mentor          Mentor?
 }
 
 enum SubjectName {
   MATH
   ART
   HISTORY 
+}
+
+enum AccountType {
+  STUDENT
+  MENTOR
 }
