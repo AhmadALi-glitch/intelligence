@@ -11,6 +11,7 @@ datasource db {
 model Account {
   id              Int         @id @default(autoincrement())
   email           String      @unique
+  hash            String
   type            AccountType
   student         Student?
   mentor          Mentor?
