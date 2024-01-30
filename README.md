@@ -20,3 +20,7 @@
 
   - #### for development with preset seeder : `npx prisma migrate dev --skip-seed`
   - #### run the development seeder : `npx prisma db seed -- --environment=development` this command will create a preset of (students, classes, mentors, account for you) to start trying
+
+- ### Generate Auth Secret to be used by Next for hashing user sessions and cookies :
+  - #### run the command : `openssl rand -base64 32`
+  - #### then in the .env file `AUTH_SECRET=generated-secret-key`

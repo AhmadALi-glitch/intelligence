@@ -1,7 +1,6 @@
 
 import { NextApiRequest, NextApiResponse } from "next";
 import PrismaClient from "../connection";
-import { Prisma } from "@prisma/client";
 import { PrismaExceptionHandler } from "@/pages/exceptions_handler";
 
 export default async function POST(request: NextApiRequest, response: NextApiResponse) {
