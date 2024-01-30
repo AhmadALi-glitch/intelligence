@@ -35,11 +35,12 @@ model Mentor {
   students        Student[]
   account         Account     @relation(fields: [accountEmail], references: [email])
   accountEmail    String      @unique
+  lessons         Lesson[]
 }
 
 model Class {
   id              Int         @id @default(autoincrement())
-  name            String
+  name            String      @unique
   description     String
   students        Student[]
   mentors         Mentor[]
@@ -60,10 +61,14 @@ model Subject {
 model Lesson {
   id              Int         @id @default(autoincrement())
   title           String
+  description     String
+  content         Json
   subject         Subject     @relation(fields: [subjectId], references: [id])
   subjectId       Int
   class           Class       @relation(fields: [classId], references: [id])
   classId         Int
+  mentor          Mentor      @relation(fields: [mentorId], references: [id])
+  mentorId        Int
 }
 
 enum SubjectName {
