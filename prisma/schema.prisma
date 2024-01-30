@@ -19,7 +19,7 @@ model Account {
 
 model Student {
   id              Int         @id @default(autoincrement())
-  name            String      @unique
+  name            String 
   classes         Class[]
   mentors         Mentor[]
   interestes      Subject[]
@@ -39,7 +39,7 @@ model Mentor {
 
 model Class {
   id              Int         @id @default(autoincrement())
-  title           String
+  name            String
   students        Student[]
   mentors         Mentor[]
   lessons         Lesson[]

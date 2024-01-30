@@ -10,16 +10,13 @@ export default async function GET(request: NextApiRequest, response : NextApiRes
 
         let token = jwt.verify(bearer, "i11y");
         if(!token) throw new Error("session expired");        
-
-        
-        let filters = {};
-        // Optional Filters
-        if(Object.keys(request.query).length) {
-            filters = {where: {type: request.query.type}};
-            console.log("Queries", filters)
-        }
-
-        const allAccounts = await PrismaClient.account.findMany(filters);
+ 
+        const allAccounts = await PrismaClient.account.findMany({
+            include: {
+                mentor: true,
+                student: true
+            }
+        });
         response.json(allAccounts);
 
     } catch(e) {

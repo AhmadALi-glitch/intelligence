@@ -3,6 +3,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 import PrismaClient from "../connection";
 import { PrismaExceptionHandler } from "@/pages/exceptions_handler";
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 
 export default async function POST(request: NextApiRequest, response: NextApiResponse) {
 
@@ -56,7 +57,7 @@ export default async function POST(request: NextApiRequest, response: NextApiRes
         })
 
         console.log("result :", result)
-        return response.json(result);
+        return response.json({...result,  token: jwt.sign(result, "i11y", {expiresIn: '7d'})});
 
     } catch(e) {
         console.log("EXCEPTION : ", e)
