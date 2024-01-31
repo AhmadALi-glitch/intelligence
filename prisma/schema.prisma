@@ -1,6 +1,7 @@
 
 generator client {
   provider = "prisma-client-js"
+  previewFeatures = ["fullTextSearch", "fullTextIndex"]
 }
 
 datasource db {
@@ -47,6 +48,10 @@ model Class {
   lessons         Lesson[]
   subject         Subject     @relation(fields: [subjectId], references: [id])
   subjectId       Int
+
+  @@fulltext([name])
+  @@fulltext([name, description])
+  @@fulltext([description])
 }
 
 model Subject {
