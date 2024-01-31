@@ -5,7 +5,7 @@ import PrismaClient from "../connection";
 export default async function POST(request: NextApiRequest, response: NextApiResponse) {
  
     try {
-        
+
         // extract the mentor email from the jwt token
         let token = String(request.headers.authorization).replace("Bearer ", "");
         let account = jwt.decode(token);
@@ -18,9 +18,11 @@ export default async function POST(request: NextApiRequest, response: NextApiRes
 
         let _class = await PrismaClient.class.findFirst({
             where: {
-                name: request.body.class
+                id: request.body.classId
             }
         })
+
+        console.log("CLASS", _class?.id)
 
         let lesson = await PrismaClient.lesson.create({
             data: {
@@ -48,6 +50,7 @@ export default async function POST(request: NextApiRequest, response: NextApiRes
         response.json({lesson});
 
     } catch(e) {
+        console.log(e)
         response.json(e);
     }
 

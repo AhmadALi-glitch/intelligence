@@ -1,18 +1,18 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import PrismaClient from "../connection";
+import { SubjectName } from "@prisma/client";
 
 export default async function GET(request: NextApiRequest, response: NextApiResponse) {
 
     let filters = {
-        where: {}
+        where: {AND: []}
     };
-
-    
-    console.log("QUERY", request.query)
+ 
     // read lessons published by selected mentors
     if(request.query.byMentors == 'true') {
-        filters.where['OR'] = request.body.mentorsIds.map((mId: number) =>
-            {
+        //@ts-ignore
+        filters.where.AND.push({
+            OR: request.body.mentorsIds.map((mId: number) => {
                 return {
                     mentors: {
                         every: {
@@ -20,8 +20,21 @@ export default async function GET(request: NextApiRequest, response: NextApiResp
                         }
                     }
                 }
-            }
-        );
+            })
+        })
+    }
+
+    if(request.query.bySubjects == 'true') {
+        //@ts-ignore
+        filters.where.AND.push({
+            OR: request.body.subjects.map((sName: SubjectName) => {
+                return {
+                    subject: {
+                        name: sName
+                    }
+                }
+            })
+        })
     }
 
     // read the lessons by searching in the lesson's name and description with the provided seach text
@@ -34,11 +47,9 @@ export default async function GET(request: NextApiRequest, response: NextApiResp
         }
     }
 
-    console.log("FILTERS : ", filters.where);
-
     let filterResult = await PrismaClient.class.findMany({
         ...filters,
-        include : { mentors: true }
+        include : { mentors: true, subject: true }
     });
 
     response.json(filterResult);
