@@ -80,3 +80,18 @@
 .account-badge:hover .personal-info .name  {
     transform: translateY(50px);
 }
+
+
+.logout-btn:hover .logout-btn ~ .account-type {
+    background-color: green;
+    animation: float ease infinite alternate 1s;
+}
+
+@keyframes float {
+    from {
+        transform: rotate(100deg);
+    }
+    to {
+        transform: rotate(0deg);
+    }
+}

@@ -28,8 +28,8 @@ export default function Navbar() {
                                 <div className="info flex flex-col gap-1 basis-1/2 h-full">
                                     <div className="name text-4xl font-semibold text-modern-black">Ahmad</div>
                                     <div className="account-type bg-modern-main text-modern-paragraph p-1 rounded-lg w-fit">Teacher</div>
-                                    <button className="basis-1/2 border-none outline-none">
-                                        
+                                    <button className="logout-btn basis-1/2 border-none outline-none">
+                                        Logout
                                     </button>
                                 </div>
                             </div>
