@@ -1,0 +1,82 @@
+
+.wrapper {
+    border-bottom: 1px solid rgba(250, 250, 250, .3);
+}
+
+.account-badge {
+    position: relative;
+}
+.account-badge .popup {
+    content: "";
+    position: absolute;
+    right: 0px;
+    top: 35px;
+    transition: .2s cubic-bezier(1, .3, .1, .1) all;
+    width: calc(100% + 200px);
+
+    height: 0px;
+    transform: translateY(-10px);
+    overflow: hidden;
+    z-index: -1;
+    transform-origin: top right;
+}
+.account-badge:hover .popup, .popup:hover{
+    height: 200px;
+    transform: translateY(0px);
+    overflow: visible;
+    scale: 1;
+}
+
+.account-badge .popup .content .personal-photo,
+.account-badge .popup .content .account-type,
+.account-badge .popup .content .name  
+{
+    transition: .3s all ease;
+}
+
+
+.account-badge .popup .content .personal-photo {
+    transform: translateX(-50px);
+}
+
+.account-badge .popup .content .account-type {
+    transform: translateX(20px);
+}
+.account-badge .popup .content .name{
+    transform: translateY(-40px);
+}
+
+.account-badge:hover
+.popup .content .personal-photo
+{
+    transform: translate(0px);
+}
+
+.account-badge:hover
+.popup .content .account-type {
+    transform: translate(0px);
+}
+
+.account-badge:hover
+.popup .content .name {
+    transform: translate(0px);
+}
+
+.personal-info {
+    overflow: hidden;
+}
+
+.account-badge .personal-info > * {
+    transition: all cubic-bezier(0.1, 0.1, .1, 1) .5s;
+    transform: translate(0px);
+}
+
+.account-badge:hover .personal-info .personal-photo  {
+    transform: translateX(-50px);
+}
+.account-badge:hover .personal-info .account-type {
+    transform: translateX(50px);
+}
+.account-badge:hover .personal-info .name  {
+    transform: translateY(50px);
+}

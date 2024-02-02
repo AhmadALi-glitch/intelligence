@@ -19,7 +19,7 @@ export default async function POST(request: NextApiRequest, response: NextApiRes
             token: jwt.sign(account, "i11y", {expiresIn: '7d'})
         })
 
-    } catch(e) {
+    } catch(e: any) {
         console.log("EXCEPTION : ", e)
         return response.json(e.message);
     }
