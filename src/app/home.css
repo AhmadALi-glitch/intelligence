@@ -1,0 +1,18 @@
+
+
+.parent {
+    display: grid;
+    grid-template-rows: 100px 100px; 
+    grid-template-columns: 100px 100px 100px;
+    grid-template-areas: "top-left  top-middle  top-right" "bottom-left  bottom-middle  bottom-right";
+}
+
+.square {
+    grid-area: bottom-right;
+    background-color: blueviolet;
+}
+
+.change {
+    background: red;
+    grid-area: top-right;
+}

@@ -1,0 +1,52 @@
+
+.separator {
+    position: relative;
+}
+
+.separator::after {
+    content: '';
+    width: 1px;
+    height: 9em;
+    background-color: rgb(250, 250, 250, .1);
+    position: absolute;
+    left: 55%;
+    top: calc(-9em - 10px);
+}
+
+.separator::before {
+    content: '';
+    width: 1px;
+    height: 9em;
+    background-color: rgb(250, 250, 250, .1);
+    position: absolute;
+    left: 55%;
+    bottom: calc(-9em - 10px);
+}
+
+
+.student, .teacher {
+    position: relative  ;
+    overflow: hidden;
+}
+
+.student .name {
+    transform: translateY(0px);
+}
+
+.student:hover {
+    opacity: .4;
+}
+.teacher:hover {
+    opacity: .4;
+}
+
+
+
+@keyframes floating {
+    0% {
+        transform: translateY(-15px);
+    }
+    100% {
+        transform: translateY(-0px);
+    }
+}

@@ -16,7 +16,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${urbanist.className} flex flex-col h-lvh w-vw p-9 bg-modern-background`}>
+      <body className={`${urbanist.className} flex flex-col h-lvh w-vw p-10 bg-modern-background`}>
         <div className="navbar">
           <Navbar />
         </div>
