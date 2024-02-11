@@ -1,9 +1,18 @@
 
 import "./form.css";
 import CheckBox from "./checkbox";
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
+import UploadPhoto from "./uploadPhoto";
+import Image from "next/image";
 
 export default function TeacherForm() {
+
+    let [photoUrl, updatePhotoUrl] = useState("");
+    let form = new FormData();
+
+    let testChangeEvent = (event: ChangeEvent<HTMLInputElement>) => {
+        console.log(event);
+    }
 
     let formSteps = [
 
@@ -44,7 +53,8 @@ export default function TeacherForm() {
         </>,
 
         <>
-
+            {/* upload photo component recieve emit from this component then update the photoData State*/}
+            <UploadPhoto updatePhotoData={testChangeEvent} />
         </>
 
     ];
@@ -58,6 +68,7 @@ export default function TeacherForm() {
                 <div className="form basis-[90%] flex flex-col justify-center items-center gap-4 ">
                     {formSteps[currentStep]}
                 </div>
+
 
                 <div className="basis-[10%] w-full flex justify-between text-lg font-bold text-modern-paragraph">
 
