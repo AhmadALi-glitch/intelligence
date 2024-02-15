@@ -3,7 +3,12 @@ import "./form.css";
 import CheckBox from "./checkbox";
 import { ChangeEvent, useState } from "react";
 import UploadPhoto from "./uploadPhoto";
-import Image from "next/image";
+import LoadingSpinner from "@/components/loadingSpinner";
+
+// always take small setps and check that every thing is working
+// debugging is the biggest time waster
+// the best way to avoid wasting time avoid debugging
+
 
 export default function TeacherForm() {
 
@@ -59,15 +64,23 @@ export default function TeacherForm() {
 
     ];
 
+
+    // updated from one place so no need to use reducer
     let [currentStep, setStep] = useState(0);
+    // also the same as the prev state .. updated from one place 
+    let [formSaving, setSaving] = useState(true);
 
     return (
         <>
             <div className="flex flex-col justify-center items-center w-full h-full">
 
-                <div className="form basis-[90%] flex flex-col justify-center items-center gap-4 ">
-                    {formSteps[currentStep]}
-                </div>
+                {
+                    !formSaving ? <div className="form basis-[90%] flex flex-col justify-center items-center gap-4 ">
+                        {formSteps[currentStep]}
+                    </div> : <div className="basis-[90%] flex flex-col justify-center items-center">
+                        <LoadingSpinner></LoadingSpinner>
+                    </div>
+                }
 
 
                 <div className="basis-[10%] w-full flex justify-between text-lg font-bold text-modern-paragraph">
