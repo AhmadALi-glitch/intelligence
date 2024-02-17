@@ -108,11 +108,10 @@ export default function StudentSide( { setAccountType, accountType }: { setAccou
             overflow: 'hidden'
         }
     }))
-  
  
     return (
         <div className="flex flex-col items-center h-full w-[49%]">
-
+            
             {/* // the button */}
             <animated.div style={{...accountButtonSprings}} >
 

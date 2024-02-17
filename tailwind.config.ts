@@ -26,18 +26,20 @@ const config: Config = {
           main : '#0473D9',
           heading: '#EEEEEE',
           paragraph: '#FFFFFF',
-          black: "#000000"
+          black: "#000000",
+          dilect_1: '#6A994E',
+          dilect_2: "#BC4B51"
         },
       
         'classic': {
           main: '#F2E8CF',
           heading: '#333333',
           paragraph: '#333333',
-          black: '#333333'
+          black: '#333333',
+          dilect_1: '#6A994E',
+          dilect_2: "#BC4B51",
         },
       
-        green: '#6A994E',
-        wine: "#BC4B51",
       },
 
       fontFamily: {

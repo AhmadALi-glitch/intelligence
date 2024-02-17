@@ -2,7 +2,8 @@
 
 import { Student, Chalkboard } from "@phosphor-icons/react/dist/ssr";
 import "./signup.css";
-import { useSpring, easings, animated } from "@react-spring/web";import { useEffect, useState } from "react";
+import { useSpring, easings, animated } from "@react-spring/web";
+import { useState } from "react";
 
 import TeacherSide from "./teacher";
 import StudentSide from "./student";
@@ -21,17 +22,15 @@ export default function SingUp() {
         }
     }));
 
-    useEffect(() => {
-        if(accountType == "teacher") {
-            // apply teacher selected animations
-        } else {
-            // apply student selected animations
+    let [ pageSprings, pageSpringsApi ] = useSpring(() => ({
+        from: {
+            height: '100%'
         }
-    }, [accountType]);
+    }));
 
     return (
         <>
-            <div className="flex justify-between items-center gap-5 h-[100%] pt-2">
+            <animated.div className="flex justify-between items-center gap-5 h-[100%] pt-2">
                 <TeacherSide setAccountType={setAccountType} accountType={accountType}/>
                 <animated.div style={{...separatorStyle}}>
                     <div className="separator text-xl text-modern-paragraph  font-thin">
@@ -41,7 +40,7 @@ export default function SingUp() {
                     </div>
                 </animated.div>
                 <StudentSide setAccountType={setAccountType} accountType={accountType}/>
-            </div>
+            </animated.div>
         </>
     )
 }

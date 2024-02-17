@@ -9,15 +9,27 @@ import LoadingSpinner from "@/components/loadingSpinner";
 // debugging is the biggest time waster
 // the best way to avoid wasting time avoid debugging
 
-
 export default function TeacherForm() {
 
-    let [photoUrl, updatePhotoUrl] = useState("");
+    let [currentStep, setStep] = useState(0);
+    let [formSaving, setSaving] = useState(false);
+    
     let form = new FormData();
-
+    let [photoUrl, updatePhotoUrl] = useState("");
     let testChangeEvent = (event: ChangeEvent<HTMLInputElement>) => {
         console.log(event);
     }
+
+
+    // mock the form saving api call
+    let saveTeacherForm = () => {
+        setSaving(true);
+        setTimeout( () => {
+        //     formStateDispatcher({type: 'FINISHED'});
+        setSaving(false);
+        }, 2000)
+    }
+
 
     let formSteps = [
 
@@ -64,12 +76,6 @@ export default function TeacherForm() {
 
     ];
 
-
-    // updated from one place so no need to use reducer
-    let [currentStep, setStep] = useState(0);
-    // also the same as the prev state .. updated from one place 
-    let [formSaving, setSaving] = useState(true);
-
     return (
         <>
             <div className="flex flex-col justify-center items-center w-full h-full">
@@ -83,15 +89,16 @@ export default function TeacherForm() {
                 }
 
 
-                <div className="basis-[10%] w-full flex justify-between text-lg font-bold text-modern-paragraph">
+                <div className={`${formSaving ? 'hidden' : 'visible'} basis-[10%] w-full flex justify-between text-lg font-bold text-modern-paragraph`}>
 
                     {(currentStep > 0) ? <button onClick={() => setStep(currentStep - 1)}>Back</button> : <div></div>}
 
                     {
                         currentStep < 2 ?
                             <button onClick={() => setStep(currentStep + 1)}>Next</button>
-                        :  
-                            <button onClick={() => console.log('finish')}>Finish</button>
+                        : !formSaving ?
+                            <button onClick={saveTeacherForm}>Finish</button>
+                        : <></>
                     }    
 
                 </div>
