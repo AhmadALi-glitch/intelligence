@@ -6,11 +6,7 @@ export const grenze = Grenze({weight: ["100", "200", "300", "400", "500", "700",
 export const halant = Halant({weight: ["300", "400", "500", "700"], subsets: ["latin"]});
 export const manrope = Manrope({weight: ["200", "300", "400", "500", "700", "800"], subsets: ["latin"]});
 
-export const ThemeContext = createContext({
-    theme: 'modern'
-})
-export const ThemeDispatcherContext = createContext(null);
- 
+
 let themes = {
     modern: {
         font: {
@@ -77,4 +73,8 @@ export const themeReducerHandler =  [
     
     themes.modern 
 
-];
+]
+
+
+export const ThemeContext = createContext( themes.modern )
+export const ThemeDispatcherContext = createContext(null)
