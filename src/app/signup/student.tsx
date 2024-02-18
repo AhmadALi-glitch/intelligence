@@ -72,7 +72,7 @@ export default function StudentSide( { setAccountType, accountType }: { setAccou
             accountTypePerfixApi.start({
                 to: {
                     overflow: 'visible',
-                    width: '70px'
+                    width: 'fit-content'
                 },
                 config: {duration: 200, easing: easings.easeInCubic}
             })
@@ -92,7 +92,7 @@ export default function StudentSide( { setAccountType, accountType }: { setAccou
     let [accountButtonSprings, accountButtonApi] = useSpring(() => ({
         from: {
             flexBasis: '100%',
-            width: '25%',
+            width: '30%',
             overflow: 'hidden'
         }
     }))
@@ -118,9 +118,9 @@ export default function StudentSide( { setAccountType, accountType }: { setAccou
             {/* // the button */}
             <animated.div style={{...accountButtonSprings}} >
 
-                <div className={ `flex flex-col justify-center items-start h-full w-full text-4xl font-bold ${theme.color.paragraph} ` }>
+                <div className={ `flex flex-col gap-1 justify-center items-start h-full w-full font-bold ${theme.color.paragraph} ` }>
 
-                        <div className="flex gap-2">
+                        <div className="flex gap-4 text-5xl">
                             <animated.div style={{...accountTypePerfixSprings}}>
                                 <span className="text-nowrap">as a</span>
                             </animated.div>

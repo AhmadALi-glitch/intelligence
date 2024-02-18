@@ -7,6 +7,7 @@ import UploadPhoto from "../../components/uploadPhoto";
 import LoadingSpinner from "@/components/loadingSpinner";
 import { ThemeContext } from "@/theme/context";
 import Input from "@/components/input";
+import { backIn } from "framer-motion";
 
 // always take small setps and check that every thing is working
 // debugging is the biggest time waster
@@ -88,15 +89,17 @@ export default function TeacherForm() {
                 }
 
 
-                <div className={`${formSaving ? 'hidden' : 'visible'} ${theme.color.dilect_1} basis-[10%] w-full flex justify-between text-lg font-bold`}>
+                <div className={`${formSaving ? 'hidden' : 'visible'} ${theme.color.dilect_1} basis-[3%] w-full flex justify-end gap-3 text-lg font-bold`}>
 
-                    {(currentStep > 0) ? <button onClick={() => setStep(currentStep - 1)}>Back</button> : <div></div>}
+                    {(currentStep > 0) ? <button onClick={() => setStep(currentStep - 1)}>back</button> : <div></div>}
+
+                    {(currentStep > 0) ? <div className={`h-full ${theme.background.paragraph} w-[2px] opacity-[0.7] rounded-full`}></div> : <></>}
 
                     {
                         currentStep < 2 ?
-                            <button onClick={() => setStep(currentStep + 1)}>Next</button>
+                            <button onClick={() => setStep(currentStep + 1)}>next</button>
                         : !formSaving ?
-                            <button onClick={saveTeacherForm}>Finish</button>
+                            <button onClick={saveTeacherForm}>finish</button>
                         : <></>
                     }    
 
