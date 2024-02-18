@@ -1,15 +1,20 @@
+'use client';
 
 import "./form.css";
-import CheckBox from "./checkbox";
-import { ChangeEvent, useState } from "react";
-import UploadPhoto from "./uploadPhoto";
+import CheckBox from "../../components/checkbox";
+import { ChangeEvent, useContext, useState } from "react";
+import UploadPhoto from "../../components/uploadPhoto";
 import LoadingSpinner from "@/components/loadingSpinner";
+import { ThemeContext } from "@/theme/context";
+import Input from "@/components/input";
 
 // always take small setps and check that every thing is working
 // debugging is the biggest time waster
 // the best way to avoid wasting time avoid debugging
 
 export default function TeacherForm() {
+
+    let theme = useContext(ThemeContext);
 
     let [currentStep, setStep] = useState(0);
     let [formSaving, setSaving] = useState(false);
@@ -35,15 +40,13 @@ export default function TeacherForm() {
 
         <>
 
-            <input 
+            <Input
                 type="text"
-                className="w-80"
                 placeholder="Full Name"
-                style={{backgroundColor: 'transparent', borderRadius: '5px' ,outline: '2px solid #eee'}}
             />
 
             <div className="interestes flex items-end gap-3 w-80">
-                <div className="text-xl font-bold text-modern-paragraph">i teach</div>
+                <div className={ `text-xl font-bold ${theme.color.paragraph}` }>i teach</div>
                 <CheckBox label="math" value={'MATH'}/>
                 <CheckBox label="art" value={'MATH'}/>
                 <CheckBox label="history" value={'MATH'}/>
@@ -53,18 +56,14 @@ export default function TeacherForm() {
 
         <>
 
-             <input 
+             <Input 
                 type="text"
-                className="w-80"
                 placeholder="Email"
-                style={{backgroundColor: 'transparent', borderRadius: '5px' ,outline: '2px solid #eee'}}
             />
             
-            <input 
+            <Input 
                 type="password"
-                className="w-80"
                 placeholder="Password"
-                style={{backgroundColor: 'transparent', borderRadius: '5px' ,outline: '2px solid #eee'}}
             />
 
         </>,
@@ -89,7 +88,7 @@ export default function TeacherForm() {
                 }
 
 
-                <div className={`${formSaving ? 'hidden' : 'visible'} basis-[10%] w-full flex justify-between text-lg font-bold text-modern-paragraph`}>
+                <div className={`${formSaving ? 'hidden' : 'visible'} ${theme.color.dilect_1} basis-[10%] w-full flex justify-between text-lg font-bold`}>
 
                     {(currentStep > 0) ? <button onClick={() => setStep(currentStep - 1)}>Back</button> : <div></div>}
 

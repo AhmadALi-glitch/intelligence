@@ -1,10 +1,13 @@
 'use client';
 
 import "./signup.css";
-import { useSpring, easings, animated } from "@react-spring/web";import { useEffect, useState } from "react";
+import { useSpring, easings, animated } from "@react-spring/web";import { useContext, useEffect, useState } from "react";
 import StuduentForm from "./studentForm";
+import { ThemeContext, ThemeDispatcherContext } from "@/theme/context";
 
 export default function TeacherSide( { setAccountType, accountType }: { setAccountType: (accountType: string) => void, accountType: string } ) {
+
+    let [theme, themeChangingDispatcher] = [ useContext(ThemeContext), useContext(ThemeDispatcherContext) ]
 
     useEffect(() => {
         // if teacher apply teacher animations
@@ -114,12 +117,12 @@ export default function TeacherSide( { setAccountType, accountType }: { setAccou
   
     return (
 
-        <div className="flex flex-col items-center h-full w-[49%]">
+        <div className={ `flex flex-col items-center h-full w-[49%] ${theme.font.paragraph}` }>
 
             {/* // the button */}
             <animated.div style={{...accountButtonSprings}} >
 
-                <div className="flex flex-col justify-center items-start h-full w-full text-4xl font-bold text-modern-heading">
+                <div className={ `flex flex-col justify-center items-start h-full w-full text-4xl font-bold ${theme.color.paragraph}` }>
 
                         <div className="flex gap-2">
                             <animated.div style={{...accountTypePerfixSprings}}>

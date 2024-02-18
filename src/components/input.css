@@ -1,0 +1,26 @@
+
+input.modern::placeholder {
+    color: #eee;
+}
+
+input.classic::placeholder {
+    color: #333;
+}
+
+
+
+input.modern {
+    color: #eee;
+}
+
+input.classic {
+    color: #333;
+}
+
+input.modern::selection {
+    background-color: #333;
+}
+
+input.classic::selection {
+    background-color: #fff;
+}

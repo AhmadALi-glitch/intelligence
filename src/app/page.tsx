@@ -28,18 +28,6 @@ export default function Home() {
 
   return (
     <main className="w-full h-[2000px]">
-      <div className="text-4xl text-modern-heading">
-        <div className="parent bg-modern-paragraph w-80 h-80">
-          <button onClick={show} className="change">change</button>
-          <Link href={'/signup'} title="Signup">sign up</Link>
-          <animated.div style={{...springs, position: "absolute"}}>
-            <div className="square flex text-red-400">
-              <div className="1">1</div>
-              <div className="2">2</div>
-            </div>
-          </animated.div>
-        </div>
-      </div>
     </main>
   );
 

@@ -1,6 +1,8 @@
-
-.wrapper {
-    border-bottom: 1px solid rgba(250, 250, 250, .3);
+.wrapper.modern {
+    border-bottom: rgba(255, 255, 255, 0.676) 1px solid
+}
+.wrapper.classic {
+    border-bottom: rgba(0, 0, 0, 0.337) 1px solid
 }
 
 .account-badge {

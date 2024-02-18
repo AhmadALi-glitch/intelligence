@@ -21,7 +21,7 @@ export default function RootLayout({
 
   return (
     <html lang="en">
-      <body className={`flex flex-col h-lvh w-vw p-10 bg-modern-background`}>
+      <body className={`${theme.background.gradient} flex flex-col h-lvh w-vw p-10`}>
         <ThemeContext.Provider value={theme}>
           <ThemeDispatcherContext.Provider value={dispatchThemeChanging}>
             <div className="navbar">

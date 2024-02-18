@@ -2,10 +2,13 @@
 
 import "./signup.css";
 import { useSpring, easings, animated } from "@react-spring/web";
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import TeacherForm from "./teacherForm";
+import { ThemeContext, ThemeDispatcherContext } from "@/theme/context";
 
 export default function StudentSide( { setAccountType, accountType }: { setAccountType: (accountType: string) => void, accountType: string } ) {
+
+    let [theme, themeChangingDispatcher] = [useContext(ThemeContext), useContext(ThemeDispatcherContext)];
 
     useEffect(() => {
 
@@ -110,12 +113,12 @@ export default function StudentSide( { setAccountType, accountType }: { setAccou
     }))
  
     return (
-        <div className="flex flex-col items-center h-full w-[49%]">
+        <div className={ `flex flex-col items-center h-full w-[49%] ${theme.font.paragraph}` }>
             
             {/* // the button */}
             <animated.div style={{...accountButtonSprings}} >
 
-                <div className="flex flex-col justify-center items-start h-full w-full text-4xl font-bold text-modern-heading">
+                <div className={ `flex flex-col justify-center items-start h-full w-full text-4xl font-bold ${theme.color.paragraph} ` }>
 
                         <div className="flex gap-2">
                             <animated.div style={{...accountTypePerfixSprings}}>
