@@ -7,7 +7,7 @@ import UploadPhoto from "../../components/uploadPhoto";
 import LoadingSpinner from "@/components/loadingSpinner";
 import { ThemeContext } from "@/theme/context";
 import Input from "@/components/input";
-import { backIn } from "framer-motion";
+import SentenceRevealer from "@/components/sentenceRevealer";
 
 // always take small setps and check that every thing is working
 // debugging is the biggest time waster
@@ -31,12 +31,12 @@ export default function TeacherForm() {
     let saveTeacherForm = () => {
         setSaving(true);
         setTimeout( () => {
-        //     formStateDispatcher({type: 'FINISHED'});
-        setSaving(false);
+            // formStateDispatcher({type: 'FINISHED'});
+            setStep(currentStep + 1);
+            setSaving(false);
         }, 2000)
     }
-
-
+    
     let formSteps = [
 
         <>
@@ -72,6 +72,10 @@ export default function TeacherForm() {
         <>
             {/* upload photo component recieve emit from this component then update the photoData State*/}
             <UploadPhoto updatePhotoData={testChangeEvent} />
+        </>,
+
+        <>
+            <SentenceRevealer sentence="Let's Create Your First Lesson"/>
         </>
 
     ];
