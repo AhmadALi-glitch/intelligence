@@ -28,7 +28,7 @@ export default function TeacherSide() {
 
     return (
 
-        <div className={ `flex flex-col items-center h-full w-[49%] ${theme.font.paragraph}` }>
+        <div className={ `flex flex-col items-center h-full w-[100%] ${theme.font.paragraph}` }>
 
             {/* // the button */}
             <animated.div style={{...accountButtonSprings}} >

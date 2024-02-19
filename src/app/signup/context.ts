@@ -31,7 +31,8 @@ let defaultState= {
     teacherAccountButton: {
             flexBasis: '100%',
             width: '30%',
-            overflow: 'hidden'
+            overflow: 'hidden',
+            transform: 'translate(0px)'
     },
 
     teacherPrefixWord: {
@@ -49,6 +50,23 @@ let defaultState= {
             flexBasis: '0%',
             overflow: 'hidden',
             width: '100%'
+    },
+
+
+    teacherSide: {
+        flexBasis: '50%',
+        height: '100%',
+        width: '100%'
+    },
+    studentSide: {
+        flexBasis: '50%',
+        height: '100%',
+        width: '100%'
+    },
+    separator: {
+        transform: 'translateX(0px)',
+        overflow: 'visible',
+        width: '2%'
     }
 
 }
@@ -75,7 +93,8 @@ export const SignUpReducer = [
                     teacherAccountButton: {
                         flexBasis: '100%',
                         width: '100%',
-                        overflow: 'visible'
+                        overflow: 'hidden',
+                        transform: 'translate(0px)'
                     },
                     teacherParagraph: {
                         height: '100px',
@@ -115,7 +134,7 @@ export const SignUpReducer = [
                     studentAccountButton: {
                         flexBasis: '100%',
                         width: '100%',
-                        overflow: 'visible'
+                        overflow: 'hidden'
                     },
                     studentParagraph: {
                         height: '100px',
@@ -124,7 +143,8 @@ export const SignUpReducer = [
 
                     teacherAccountButton: {
                         overflow: 'hidden',
-                        flexBasis: '0%'
+                        flexBasis: '0%',
+                        transform: 'translate(0px)'
                     },
                     teacherParagraph: {
                         height: '0px',
@@ -142,6 +162,28 @@ export const SignUpReducer = [
             }
             case "teacher_registered" : {
                 return {
+                    ...state,
+                    teacherAccountButton: {
+                        width: '0px',
+                        overflow: 'hidden',
+                        transform: 'translateX(-600px)'
+                    },                
+                    teacherSide: {
+                        flexBasis: '0%',
+                        height: '100%',
+                        overflow: 'hidden',
+                        width: '0px'
+                    },
+                    studentSide: {
+                        flexBasis: '100%',
+                        height: '100%',
+                        width: '100%'
+                    },
+                    separator: {
+                        transform: 'translateX(-600px)',
+                        overflow: 'hidden',
+                        width: '0px'
+                    }
                 }
             }
             case "student_registered" : {

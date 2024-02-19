@@ -3,7 +3,7 @@
 import { Student, Chalkboard } from "@phosphor-icons/react/dist/ssr";
 import "./signup.css";
 import { useSpring, easings, animated } from "@react-spring/web";
-import { useContext, useReducer, useState } from "react";
+import { useContext, useEffect, useReducer, useState } from "react";
 
 import TeacherSide from "./teacher";
 import StudentSide from "./student";
@@ -16,20 +16,20 @@ export default function SingUp() {
     let theme = useContext(ThemeContext);
 
     let [separatorStyle, separatorApi] = useSpring(() => ({
-        from: {
-            x: 0
-        },
-        config: {
-            easing: easings.easeInCubic,
-            duration: 1000
-        }
+        from: formState.separator
+    }));
+    let [teacherSideSprings, teacherSideApi] = useSpring(() => ({
+        from: formState.teacherSide
+    }));
+    let [studentSideSprings, studentSideApi] = useSpring(() => ({
+        from: formState.studentSide
     }));
 
-    let [ pageSprings, pageSpringsApi ] = useSpring(() => ({
-        from: {
-            height: '100%'
-        }
-    }));
+    useEffect(() => {
+        teacherSideApi.start({to: formState.teacherSide, duration: 1000, easing: easings.easeInCubic})
+        studentSideApi.start({to: formState.studentSide, duration: 1000, easing: easings.easeInCubic})
+        separatorApi.start({to: formState.separator, duration: 1000, easing: easings.easeInCubic})
+    }, [formState])
 
     return (
         <>
@@ -37,17 +37,25 @@ export default function SingUp() {
             <GlobalContext.Provider value={formState}>
                 <GlobalContextDispatcher.Provider value={formStateDispatcher}>
 
-                    <animated.div className="flex justify-between items-center gap-5 h-[100%] pt-2">
-                        <TeacherSide />
+                    <div className="flex justify-between items-center h-[100%]">
+                        
+                        <animated.div style={{...teacherSideSprings}}>
+                            <TeacherSide />
+                        </animated.div>
+                        
                         <animated.div style={{...separatorStyle}}>
-                            <div className={ `separator text-xl ${theme.color.paragraph} ${theme.name} font-thin` }>
+                            <div className={ `separator flex justify-center text-xl ${theme.color.paragraph} ${theme.name} font-thin` }>
                                 <span onClick={() => formStateDispatcher( { type: formState.accountType == 'student' ? 'teacher_selected' : formState.accountType == 'teacher' ? 'student_selected' : ''  } )}>
                                     {formState.accountType == 'student' ? <Student weight="duotone"/> : formState.accountType == 'teacher' ? <Chalkboard weight="duotone"/> : 'Or'}
                                 </span> 
                             </div>
                         </animated.div>
-                        <StudentSide />
-                    </animated.div>
+
+                        <animated.div style={{...studentSideSprings}}>
+                            <StudentSide />
+                        </animated.div>
+
+                    </div>
 
                 </GlobalContextDispatcher.Provider>
             </GlobalContext.Provider>

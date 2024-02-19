@@ -8,6 +8,7 @@ import LoadingSpinner from "@/components/loadingSpinner";
 import { ThemeContext } from "@/theme/context";
 import Input from "@/components/input";
 import SentenceRevealer from "@/components/sentenceRevealer";
+import { GlobalContext, GlobalContextDispatcher } from "./context";
 
 // always take small setps and check that every thing is working
 // debugging is the biggest time waster
@@ -16,6 +17,7 @@ import SentenceRevealer from "@/components/sentenceRevealer";
 export default function TeacherForm() {
 
     let theme = useContext(ThemeContext);
+    let globalContextDispatcher = useContext(GlobalContextDispatcher);
 
     let [currentStep, setStep] = useState(0);
     let [formSaving, setSaving] = useState(false);
@@ -34,7 +36,15 @@ export default function TeacherForm() {
             // formStateDispatcher({type: 'FINISHED'});
             setStep(currentStep + 1);
             setSaving(false);
+            globalContextDispatcher({type: 'teacher_registered'})
+
         }, 2000)
+    }
+
+    let onPresentaionAnimationEnd = () => {
+        // route to teacher workspace
+        console.log("Teacher Finally Signed");
+        
     }
     
     let formSteps = [
@@ -57,7 +67,7 @@ export default function TeacherForm() {
 
         <>
 
-             <Input 
+            <Input 
                 type="text"
                 placeholder="Email"
             />
@@ -75,7 +85,7 @@ export default function TeacherForm() {
         </>,
 
         <>
-            <SentenceRevealer sentence="Let's Create Your First Lesson" duration={200}/>
+            <SentenceRevealer onAnimateEnd={onPresentaionAnimationEnd} removeAfter={1000} sentence="Let's Create Your First Class" delay={1000} disappearDuration={200} appearDuration={200}/>
         </>
 
     ];
@@ -93,7 +103,7 @@ export default function TeacherForm() {
                 }
 
 
-                <div className={`${formSaving ? 'hidden' : 'visible'} ${theme.color.dilect_1} basis-[3%] w-full flex justify-end gap-3 text-lg font-bold`}>
+                <div className={`${formSaving || currentStep == formSteps.length - 1 ? 'hidden' : 'visible'} ${theme.color.dilect_1} basis-[3%] w-full flex justify-end gap-3 text-lg font-bold`}>
 
                     {(currentStep > 0) ? <button onClick={() => setStep(currentStep - 1)}>back</button> : <div></div>}
 
