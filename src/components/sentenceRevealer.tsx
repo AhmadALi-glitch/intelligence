@@ -2,7 +2,7 @@ import { ThemeContext } from "@/theme/context";
 import { easings, useTrail, animated } from "@react-spring/web"
 import { useContext } from "react";
 
-export default function SentenceRevealer({sentence}: {sentence: string}) {
+export default function SentenceRevealer({sentence, duration}: {sentence: string, duration: number}) {
 
     let theme = useContext(ThemeContext);
 
@@ -19,7 +19,7 @@ export default function SentenceRevealer({sentence}: {sentence: string}) {
         },
         config: {
             easing: easings.easeInOutQuart,
-            duration: 200
+            duration
         }
     }))
 

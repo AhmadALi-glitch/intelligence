@@ -75,7 +75,7 @@ export default function TeacherForm() {
         </>,
 
         <>
-            <SentenceRevealer sentence="Let's Create Your First Lesson"/>
+            <SentenceRevealer sentence="Let's Create Your First Lesson" duration={200}/>
         </>
 
     ];
